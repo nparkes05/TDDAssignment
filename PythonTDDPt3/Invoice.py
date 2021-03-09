@@ -11,6 +11,7 @@ class Invoice:
     def totalImpurePrice(self, products):
         total_impure_price = 0
         for k, v in products.items():
+            print(v['qnt'])
             total_impure_price += float(v['unit_price']) * int(v['qnt'])
         total_impure_price = round(total_impure_price, 2)
         return total_impure_price
@@ -43,3 +44,13 @@ class Invoice:
                 continue
             else:
                 return userInput
+
+    def whichProductCostMore(self, products1, products2):
+        purePrice1 = self.totalPurePrice(products1)
+        purePrice2 = self.totalPurePrice(products2)
+        if purePrice1 > purePrice2:
+            return products1
+        elif purePrice1 < purePrice2:
+            return products2
+        else:
+            return "They are equal"
